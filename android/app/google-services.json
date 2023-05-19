@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "814385216893",
+    "firebase_url": "https://learn-and-earn-60221-default-rtdb.firebaseio.com",
+    "project_id": "learn-and-earn-60221",
+    "storage_bucket": "learn-and-earn-60221.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814385216893:android:ed0e3ba0a95af3b17e6014",
+        "android_client_info": {
+          "package_name": "com.example.my_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814385216893-bc80vjgq856b0isdh01kgkkdgqa5mu98.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuSjHxATFrQFSglRMcHf8wlEtOA2K_muQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814385216893-952lo5jp6be3onub1hf5ahflouq2643n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
