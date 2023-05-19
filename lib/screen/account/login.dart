@@ -244,7 +244,6 @@ class Login extends StatelessWidget {
                                   }else{
 
                                     Map data = value.value as Map;
-                                    print(data);
                                     if(data['pass'] == provider.pass){
 
 

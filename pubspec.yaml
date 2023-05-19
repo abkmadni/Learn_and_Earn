@@ -45,7 +45,7 @@ dependencies:
   cached_network_image: ^3.2.2
   circular_bottom_navigation: ^2.3.0
   carousel_slider: ^4.2.1
-
+  youtube_player_flutter: ^8.1.2
   google_sign_in: ^6.1.0
   firebase_core: ^2.9.0
   firebase_database: ^10.1.0

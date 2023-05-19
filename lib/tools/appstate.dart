@@ -44,6 +44,7 @@ class AppState extends ChangeNotifier {
   // details
   String edu='';
 
+  TextEditingController? textEditingController = TextEditingController();
 
   // database
   DatabaseReference database = FirebaseDatabase.instance.ref();
