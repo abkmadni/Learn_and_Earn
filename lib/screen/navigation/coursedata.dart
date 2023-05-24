@@ -31,6 +31,8 @@ class coursedata extends StatelessWidget {
         child: Column(
           children: [
 
+
+
             top(title: dataa["title"].toString()),
 
             Expanded(
