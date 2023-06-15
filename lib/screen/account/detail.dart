@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:my_flutter_app/tools/col.dart';
@@ -35,7 +36,7 @@ class detail extends StatelessWidget {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Text('Enter Basic Details',style: TextStyle(fontFamily: 'pointpanther',
+                child: Text('Enter Basic Details',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
                     fontSize: AppLayout.getwidth(context)*0.1),),
               ),
 
@@ -52,7 +53,7 @@ class detail extends StatelessWidget {
 
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Select Image',style: TextStyle(fontFamily: 'sual',
+                      child: Text('Select Image',style: GoogleFonts.roboto(
                           fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                     ),
 
@@ -109,7 +110,7 @@ class detail extends StatelessWidget {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text('Upload Image',style: TextStyle(fontFamily: 'sual',
+                                      child: Text('Upload Image',style: GoogleFonts.roboto(
                                           fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                                     ),
                                   ),
@@ -125,7 +126,7 @@ class detail extends StatelessWidget {
 
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Enter last education',style: TextStyle(fontFamily: 'sual',
+                      child: Text('Enter last education',style: GoogleFonts.roboto(
                           fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                     ),
 
@@ -158,15 +159,13 @@ class detail extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child:
                                 TextField(
-                                  style: const TextStyle(
-                                      fontFamily: 'sual'
-                                  ),
+                                  style:  GoogleFonts.roboto(),
                                   onChanged: (value){
                                     provider.edu = value;
                                   },
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                       hintText: 'Enter last education',
-                                      hintStyle: TextStyle(fontFamily: 'sual'),
+                                      hintStyle: GoogleFonts.roboto(),
                                       border: InputBorder.none
                                   ),
                                   // keyboardType: ,
@@ -185,7 +184,7 @@ class detail extends StatelessWidget {
 
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Select Gender',style: TextStyle(fontFamily: 'sual',
+                      child: Text('Select Gender',style: GoogleFonts.roboto(
                           fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                     ),
 
@@ -243,7 +242,7 @@ class detail extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child:Text(
-                            'Next',style: TextStyle(fontFamily: 'pointpanther',color: col.wh
+                            'Next',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.wh
                               ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -45,15 +46,15 @@ class splashscreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
-                              Text('Learn &',style: TextStyle(fontFamily: 'pointpanther',
+                              Text('Learn &',style: GoogleFonts.roboto(fontWeight:FontWeight.bold,
                                   fontSize: AppLayout.getwidth(context)*0.1 ),),
-                          Text('Earn',style: TextStyle(fontFamily: 'pointpanther',
+                          Text('Earn',style: GoogleFonts.roboto(fontWeight:FontWeight.bold,
                               fontSize: AppLayout.getwidth(context)*0.1 ,color:  col.pruple ),),
 
 
                           Text(
                             'There you can Learn different new technologies and at the same time make you career better by exploring jobs',
-                            style: TextStyle(fontFamily: 'paul',
+                            style: GoogleFonts.roboto(
                               fontSize: AppLayout.getwidth(context)*0.04 ),textAlign: TextAlign.justify,),
 
 

@@ -50,5 +50,8 @@ class AppState extends ChangeNotifier {
   DatabaseReference database = FirebaseDatabase.instance.ref();
   final storage = FirebaseStorage.instance.ref();
 
+  // chat
+  bool chatbottom = false;
+
 }
 

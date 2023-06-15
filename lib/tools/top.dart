@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/tools/applayout.dart';
 
 import 'col.dart';
@@ -37,7 +38,8 @@ class top extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(title,style: TextStyle(fontFamily: "pointpanther",fontSize: AppLayout.getwidth(context)*0.07),maxLines: 1,overflow: TextOverflow.ellipsis,),
+            child: Text(title,style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
+                fontSize: AppLayout.getwidth(context)*0.07),maxLines: 1,overflow: TextOverflow.ellipsis,),
           )
 
         ],

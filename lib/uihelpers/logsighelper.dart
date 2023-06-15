@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:my_flutter_app/tools/col.dart';
 import '../tools/applayout.dart';
@@ -29,7 +30,7 @@ class logsighelper extends StatelessWidget {
                       fontSize: AppLayout.getwidth(context)*0.15,color: col.pruple),),
                   Text(
                     text3,
-                    style: TextStyle(fontFamily: 'saul',fontSize: AppLayout.getwidth(context)*0.035),
+                    style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.035),
                     textAlign: TextAlign.justify,),
                 ],
               ),

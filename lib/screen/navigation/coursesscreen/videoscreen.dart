@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/tools/applayout.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -87,7 +90,7 @@ class _videoscreenState extends State<videoscreen> {
           Expanded(
             child: Text(
               controller.metadata.title,
-              style: const TextStyle(color: Colors.white, fontSize: 18.0,fontFamily: "pointpanther"), overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.roboto(color: Colors.white, fontSize: 18.0,fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
@@ -113,10 +116,13 @@ class _videoscreenState extends State<videoscreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 12 ,right: 12,top: 10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(widget.cdata['title'],style: TextStyle(fontFamily: "pointpanther",fontSize: AppLayout.getwidth(context)*0.045),maxLines: 2,
+                      Text(widget.cdata['title'],style: GoogleFonts.roboto(fontWeight:FontWeight.bold
+                          ,fontSize: AppLayout.getwidth(context)*0.045),maxLines: 2,
                         overflow: TextOverflow.ellipsis,),
-                      Text(widget.cdata['des'],style: TextStyle(fontFamily: "sual",fontSize: AppLayout.getwidth(context)*0.04),maxLines: 5,
+                      Text(widget.cdata['des'],style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.04),maxLines: 5,
                         overflow: TextOverflow.ellipsis,),
                     ],
                   ),

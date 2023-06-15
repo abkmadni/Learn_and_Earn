@@ -2,6 +2,7 @@ import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../tools/applayout.dart';
 import '../tools/col.dart';
@@ -26,13 +27,13 @@ class _MyHomePageState extends State<Homepage> {
       CupertinoIcons.square_stack_3d_up,
       "Courses",
       col.pruple,
-      labelStyle: const TextStyle(fontWeight: FontWeight.normal,fontFamily: 'pointpanther'),
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.normal),
     ),
     TabItem(
-      Icons.school_outlined,
+      Icons.cases_outlined,
       "Jobs",
       col.pruple,
-      labelStyle: const TextStyle(fontWeight: FontWeight.normal,fontFamily: 'pointpanther'),
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.normal),
     ),
   ]);
 
