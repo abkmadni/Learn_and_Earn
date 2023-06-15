@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/screen/account/login.dart';
 import 'package:my_flutter_app/screen/account/stuorjob.dart';
 import 'package:page_transition/page_transition.dart';
@@ -36,7 +37,7 @@ class otp extends StatelessWidget {
 
             children: [
 
-              Text('Phone Verification',style: TextStyle(fontFamily: 'pointpanther',
+              Text('Phone Verification',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
                   fontSize: AppLayout.getwidth(context)*0.1),),
 
             Pinput(
@@ -93,7 +94,7 @@ class otp extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
                         child:Text(
-                          'Verify',style: TextStyle(fontFamily: 'pointpanther',color: col.wh
+                          'Verify',style: GoogleFonts.roboto(color: col.wh
                             ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                       ),
                     ),

@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_flutter_app/screen/account/otp.dart';
 import 'package:my_flutter_app/screen/account/signup.dart';
@@ -45,7 +47,7 @@ class Login extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Enter your number',style: TextStyle(fontFamily: 'sual',
+                        Text('Enter your number',style: GoogleFonts.roboto(
                             fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
 
                         Padding(
@@ -77,15 +79,13 @@ class Login extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextField(
                                       keyboardType: TextInputType.phone,
-                                      style: const TextStyle(
-                                        fontFamily: 'sual'
-                                      ),
+                                      style:  GoogleFonts.roboto(),
                                       onChanged: (val){
                                         provider.phone = val;
                                       },
-                                        decoration: const InputDecoration(
+                                        decoration:  InputDecoration(
                                           hintText: 'Enter you number',
-                                          hintStyle: TextStyle(fontFamily: 'sual'),
+                                          hintStyle: GoogleFonts.roboto(),
                                           border: InputBorder.none
                                         ),
                                       // keyboardType: ,
@@ -103,7 +103,7 @@ class Login extends StatelessWidget {
 
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: Text('Enter password',style: TextStyle(fontFamily: 'sual',
+                          child: Text('Enter password',style: GoogleFonts.roboto(
                               fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                         ),
 
@@ -136,15 +136,13 @@ class Login extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextField(
                                       obscureText: true,
-                                      style: const TextStyle(
-                                          fontFamily: 'sual'
-                                      ),
+                                      style: GoogleFonts.roboto(),
                                       onChanged: (val){
                                         provider.pass = val;
                                       },
-                                      decoration: const InputDecoration(
+                                      decoration:  InputDecoration(
                                           hintText: 'Confirm your password',
-                                          hintStyle: TextStyle(fontFamily: 'sual'),
+                                          hintStyle: GoogleFonts.roboto(),
                                           border: InputBorder.none
                                       ),
                                       // keyboardType: ,
@@ -177,15 +175,14 @@ class Login extends StatelessWidget {
                                   }else{
 
                                     Map data = value.value as Map;
-                                    print(data);
+
                                     if(data['pass'] == provider.pass){
-
-
 
                                       provider.prefs.setString('phone',provider.phone);
                                       provider.prefs.setString('img',data['img']);
                                       provider.prefs.setString('education',data['edu']);
                                       provider.prefs.setString('name',data['name']);
+                                      provider.prefs.setString('useras',data['useras']);
 
                                       Navigator.pushReplacement(context, PageTransition(
                                           child:  Homepage(), type: PageTransitionType.fade));
@@ -209,7 +206,7 @@ class Login extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                   child:Text(
-                                    'Login',style: TextStyle(fontFamily: 'pointpanther',color: col.wh
+                                    'Login',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.wh
                                       ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                 ),
                               ),
@@ -222,7 +219,7 @@ class Login extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              '------ or continue with ------',style: TextStyle(fontFamily: 'paul',color:Colors.black45
+                              '------ or continue with ------',style: GoogleFonts.roboto(color:Colors.black45
                                 ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                           ),
                         ),
@@ -246,12 +243,11 @@ class Login extends StatelessWidget {
                                     Map data = value.value as Map;
                                     if(data['pass'] == provider.pass){
 
-
-
                                       provider.prefs.setString('phone',provider.phone);
                                       provider.prefs.setString('img',data['img']);
                                       provider.prefs.setString('education',data['edu']);
                                       provider.prefs.setString('name',data['name']);
+                                      provider.prefs.setString('useras',data['useras']);
 
                                       Navigator.pushReplacement(context, PageTransition(
                                           child:  Homepage(), type: PageTransitionType.fade));
@@ -274,7 +270,7 @@ class Login extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                   child:Text(
-                                    'Google',style: TextStyle(fontFamily: 'pointpanther',color: col.pruple
+                                    'Google',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.pruple
                                       ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                 ),
                               ),
@@ -303,7 +299,7 @@ class Login extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                   child:Text(
-                                    'Sign up',style: TextStyle(fontFamily: 'pointpanther',color: col.pruple
+                                    'Sign up',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.pruple
                                       ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                 ),
                               ),

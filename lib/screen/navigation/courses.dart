@@ -5,7 +5,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/screen/navigation/coursedata.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_flutter_app/screen/navigation/coursesscreen/coursedata.dart';
 import 'package:my_flutter_app/screen/navigation/coursesscreen/profile.dart';
 import 'package:my_flutter_app/tools/applayout.dart';
 import 'package:page_transition/page_transition.dart';
@@ -64,9 +65,9 @@ class course extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text( provider.prefs.containsKey('name')?provider.prefs.getString("name"):"name",
-                              style: TextStyle(fontFamily: "pointpanther",fontSize: AppLayout.getwidth(context)*0.05),),
+                              style: GoogleFonts.roboto(fontWeight:FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.05),),
                             Text(provider.prefs.containsKey('education')?provider.prefs.getString("education"):"education"
-                            ,style: TextStyle(fontFamily: "sual",fontSize: AppLayout.getwidth(context)*0.03),)
+                            ,style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.03),)
                           ],
                         ),
                       ),
@@ -75,7 +76,6 @@ class course extends StatelessWidget {
                   ),
                 ),
               ),
-
 
               FutureBuilder(
                 future: getdata(provider, context),
@@ -109,7 +109,7 @@ class course extends StatelessWidget {
 
                   Flexible(
                     child: TextField(
-                      style: const TextStyle(fontFamily: "pointpanther", fontSize: 20),
+                      style: GoogleFonts.roboto(fontWeight:FontWeight.bold, fontSize: 20),
                       onChanged: (value) {
                         provider.notifyListeners();
                       },
@@ -140,7 +140,6 @@ class course extends StatelessWidget {
             ),
 
 
-
             Expanded(
               child: FirebaseAnimatedList(
                 query: provider.database.child("course"),
@@ -151,7 +150,7 @@ class course extends StatelessWidget {
                     return InkWell(
                       onTap: (){
                         Navigator.push(context, PageTransition(
-                            child: coursedata(dataa: dataa,index: index,), type: PageTransitionType.fade));
+                            child: coursedata(dataa: dataa,indexx: index,), type: PageTransitionType.fade));
                       },
                       child: Hero(
                         tag: "data"+index.toString(),
@@ -235,7 +234,7 @@ class maincoursedata extends StatelessWidget {
                   accountinfo(title: "Name : ",name:data['title'].toString(),icon: Icons.person,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(data['des'],style: TextStyle(fontFamily: 'sual', fontSize: AppLayout.getwidth(context)*0.04)
+                    child: Text(data['des'],style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.04)
                       ,maxLines: 2,overflow: TextOverflow.ellipsis,),
                   ),
 
@@ -247,12 +246,12 @@ class maincoursedata extends StatelessWidget {
                         const Icon(Icons.circle),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(data['student'].toString(),style: TextStyle(fontFamily: 'sual', fontSize: AppLayout.getwidth(context)*0.03)),
+                          child: Text(data['student'].toString(),style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.03)),
                         ),
                         const Icon(Icons.star),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(data['rating'].toString(),style: TextStyle(fontFamily: 'sual', fontSize: AppLayout.getwidth(context)*0.03)),
+                          child: Text(data['rating'].toString(),style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.03)),
                         ),
 
                       ],

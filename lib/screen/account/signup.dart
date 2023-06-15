@@ -2,6 +2,7 @@ import 'package:fancy_password_field/fancy_password_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_flutter_app/screen/account/stuorjob.dart';
 
@@ -39,7 +40,7 @@ class Singup extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
-                            Text('Enter your name',style: TextStyle(fontFamily: 'sual',
+                            Text('Enter your name',style: GoogleFonts.roboto(
                                 fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
 
                             Padding(
@@ -68,17 +69,15 @@ class Singup extends StatelessWidget {
                                           color: col.gr
                                       ),
                                       child:  Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: TextField(
-                                          style: TextStyle(
-                                              fontFamily: 'sual'
-                                          ),
+                                          style: GoogleFonts.roboto(),
                                           onChanged: (value) {
                                             provider.name = value;
                                           },
                                           decoration: InputDecoration(
                                               hintText: 'Enter you name',
-                                              hintStyle: TextStyle(fontFamily: 'sual'),
+                                              hintStyle: GoogleFonts.roboto(),
                                               border: InputBorder.none,
                                           ),
                                           // keyboardType: ,
@@ -96,7 +95,7 @@ class Singup extends StatelessWidget {
 
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child: Text('Enter your number',style: TextStyle(fontFamily: 'sual',
+                              child: Text('Enter your number',style: GoogleFonts.roboto(
                                   fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                             ),
 
@@ -126,18 +125,16 @@ class Singup extends StatelessWidget {
                                           color: col.gr
                                       ),
                                       child:  Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: TextField(
                                           keyboardType: TextInputType.phone,
-                                          style: TextStyle(
-                                              fontFamily: 'sual'
-                                          ),
+                                          style: GoogleFonts.roboto(),
                                           onChanged: (value) {
                                             provider.phone = value;
                                           },
                                           decoration: InputDecoration(
                                               hintText: 'Enter you number',
-                                              hintStyle: TextStyle(fontFamily: 'sual'),
+                                              hintStyle: GoogleFonts.roboto(),
                                               border: InputBorder.none
                                           ),
                                           // keyboardType: ,
@@ -156,7 +153,7 @@ class Singup extends StatelessWidget {
 
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child: Text('Enter password',style: TextStyle(fontFamily: 'sual',
+                              child: Text('Enter password',style: GoogleFonts.roboto(
                                   fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                             ),
 
@@ -186,7 +183,7 @@ class Singup extends StatelessWidget {
                                           color: col.gr
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child:
 
 
@@ -199,9 +196,9 @@ class Singup extends StatelessWidget {
                                             SpecialCharacterValidationRule(),
                                             MinCharactersValidationRule(6),
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                               hintText: 'Enter your password',
-                                              hintStyle: TextStyle(fontFamily: 'sual'),
+                                              hintStyle: GoogleFonts.roboto(),
                                               border: InputBorder.none
                                           ),
                                           onChanged: (value) {
@@ -225,7 +222,7 @@ class Singup extends StatelessWidget {
                                                     const SizedBox(width: 12),
                                                     Text(
                                                       rule.name,
-                                                      style: const TextStyle(
+                                                      style: GoogleFonts.roboto(
                                                         color: Colors.green,
                                                       ),
                                                     ),
@@ -240,7 +237,7 @@ class Singup extends StatelessWidget {
                                                     const SizedBox(width: 12),
                                                     Text(
                                                       rule.name,
-                                                      style: const TextStyle(
+                                                      style: GoogleFonts.roboto(
                                                         color: Colors.red,
                                                       ),
                                                     ),
@@ -269,7 +266,7 @@ class Singup extends StatelessWidget {
 
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
-                              child: Text('Confirm your password',style: TextStyle(fontFamily: 'sual',
+                              child: Text('Confirm your password',style: GoogleFonts.roboto(
                                   fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
                             ),
 
@@ -299,18 +296,16 @@ class Singup extends StatelessWidget {
                                           color: col.gr
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: TextField(
                                           obscureText: true,
-                                          style: TextStyle(
-                                              fontFamily: 'sual'
-                                          ),
+                                          style: GoogleFonts.roboto(),
                                           onChanged: (value) {
                                             provider.confirm = value;
                                           },
                                           decoration: InputDecoration(
                                               hintText: 'Confirm your password',
-                                              hintStyle: TextStyle(fontFamily: 'sual'),
+                                              hintStyle: GoogleFonts.roboto(),
                                               border: InputBorder.none
                                           ),
                                           // keyboardType: ,
@@ -397,10 +392,10 @@ class Singup extends StatelessWidget {
                                       color: col.pruple
                                   ),
                                   child:Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Center(
                                       child:Text(
-                                        'Sign up with number',style: TextStyle(fontFamily: 'pointpanther',color: col.wh
+                                        'Sign up with number',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.wh
                                           ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                     ),
                                   ),
@@ -413,7 +408,7 @@ class Singup extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  '------ or continue with ------',style: TextStyle(fontFamily: 'paul',color:Colors.black45
+                                  '------ or continue with ------',style: GoogleFonts.roboto(color:Colors.black45
                                     ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                               ),
                             ),
@@ -482,10 +477,10 @@ class Singup extends StatelessWidget {
                                       color: col.gr
                                   ),
                                   child:Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Center(
                                       child:Text(
-                                        'Sign up with Google',style: TextStyle(fontFamily: 'pointpanther',color: col.pruple
+                                        'Sign up with Google',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.pruple
                                           ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                     ),
                                   ),
@@ -508,10 +503,10 @@ class Singup extends StatelessWidget {
                                       color: col.gr
                                   ),
                                   child:Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Center(
                                       child:Text(
-                                        'Login',style: TextStyle(fontFamily: 'pointpanther',color: col.pruple
+                                        'Login',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.pruple
                                           ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                                     ),
                                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_flutter_app/tools/col.dart';
@@ -37,7 +38,7 @@ class genderhelper extends StatelessWidget {
 
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(text2,style: TextStyle(fontFamily: 'pointpanther',
+          child: Text(text2,style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
               fontSize: AppLayout.getwidth(context)*0.05,color: col.pruple),textAlign: TextAlign.center,),
         ),
 

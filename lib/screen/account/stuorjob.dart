@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/screen/account/detail.dart';
 import 'package:my_flutter_app/tools/appstate.dart';
 import 'package:my_flutter_app/tools/col.dart';
@@ -29,7 +30,7 @@ class stuorjob extends StatelessWidget {
 
             children: [
 
-              Text('Select a Catagory',style: TextStyle(fontFamily: 'pointpanther',
+              Text('Select a Catagory',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
                   fontSize: AppLayout.getwidth(context)*0.1),),
 
                Row(
@@ -53,7 +54,7 @@ class stuorjob extends StatelessWidget {
                       if(provider.cat != ''){
 
                         provider.database.child('user').child(phone).child('useras').set(provider.cat);
-
+                        provider.prefs.setString('useras',provider.cat);
                         provider.cat = '';
                         Navigator.pushReplacement(context, PageTransition(
                             child:  detail(phone: phone,), type: PageTransitionType.fade));
@@ -74,7 +75,7 @@ class stuorjob extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child:Text(
-                            'Next',style: TextStyle(fontFamily: 'pointpanther',color: col.wh
+                            'Next',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.wh
                               ,fontSize: AppLayout.getwidth(context)*0.05 ),),
                         ),
                       ),
