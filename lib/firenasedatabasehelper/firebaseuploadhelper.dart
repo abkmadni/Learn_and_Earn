@@ -22,15 +22,15 @@ class FirebaseHelper{
     return downloadURL;
   }
 
-  static Future<String> uploadFiles(File? file,AppState provider,String phone) async {
+  static Future<String> uploadFiles(File? file,AppState provider) async {
     String filename = path.basename(file!.path);
     String extension = path.extension(file.path);
     String randomChars = DateTime.now().millisecondsSinceEpoch.toString();
     String uniqueFilename = '$filename-$randomChars$extension';
 
-    UploadTask uploadTask = provider.storage.child('chat').child(phone).child(uniqueFilename).putFile(file);
+    UploadTask uploadTask = provider.storage.child('chat').child(uniqueFilename).putFile(file);
     await uploadTask;
-    String downloadURL = await provider.storage.child('chat').child(phone).child(uniqueFilename).getDownloadURL();
+    String downloadURL = await provider.storage.child('chat').child(uniqueFilename).getDownloadURL();
     return downloadURL;
   }
 

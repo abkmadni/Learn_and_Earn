@@ -9,10 +9,15 @@ import 'package:my_flutter_app/tools/col.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.black ));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: col.wh,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark));
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseDatabase.instance.setPersistenceEnabled(true);
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());

@@ -3,11 +3,14 @@ import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_flutter_app/screen/navigation/coursesscreen/profile.dart';
 
 import '../tools/applayout.dart';
 import '../tools/col.dart';
 import 'navigation/courses.dart';
 import 'navigation/jobs.dart';
+import 'navigation/jobscreen/chat.dart';
+import 'navigation/jobscreen/community.dart';
 
 
 class Homepage extends StatefulWidget {
@@ -26,14 +29,26 @@ class _MyHomePageState extends State<Homepage> {
     TabItem(
       CupertinoIcons.square_stack_3d_up,
       "Courses",
-      col.pruple,
-      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.normal),
+      col.wh,
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
     ),
     TabItem(
       Icons.cases_outlined,
       "Jobs",
-      col.pruple,
-      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.normal),
+      col.wh,
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
+    ),
+    TabItem(
+      Icons.scatter_plot_outlined,
+      "Chat",
+      col.wh,
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
+    ),
+    TabItem(
+      Icons.person,
+      "setting",
+      col.wh,
+      labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
     ),
   ]);
 
@@ -69,6 +84,12 @@ class _MyHomePageState extends State<Homepage> {
       case 1:
         screen = const jobs();
         break;
+      case 2:
+        screen = const coummunity();
+        break;
+      case 3:
+        screen = const profile();
+        break;
     }
 
     return SizedBox(
@@ -86,8 +107,9 @@ class _MyHomePageState extends State<Homepage> {
       tabItems,
       controller: _navigationController,
       selectedPos: selectedPos,
-      barBackgroundColor: Colors.white,
-
+      barBackgroundColor: col.pruple,
+      selectedIconColor: col.pruple,
+      normalIconColor: col.wh,
       animationDuration: const Duration(milliseconds: 700),
       selectedCallback: (int? selectedPos) {
         setState(() {

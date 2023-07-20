@@ -43,8 +43,10 @@ class certificate extends StatelessWidget {
 
                           InkWell(
                             onTap: (){
-                              provider.database.child('getcer').child(provider.prefs.getString('phone')).set({
-                                title:snapshot.data.value.toString()
+                              final key = provider.database.child('getcer').child(provider.prefs.getString('phone')).push();
+                              key.set({
+                                'title':title,
+                                'link':snapshot.data.value.toString()
                               }).then((value) => Navigator.pop(context));
                             },
                             child: Container(

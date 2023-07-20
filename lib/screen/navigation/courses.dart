@@ -30,17 +30,12 @@ class course extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-              InkWell(
-                onTap: (){
-                  Navigator.push(context, PageTransition(
-                      child: const profile(), type: PageTransitionType.fade));
-                },
-                child: Container(
+              Container(
                   width: AppLayout.getwidth(context),
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.amber.withOpacity(0.5),
+                    color: col.pruple.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(10)
                   ),
                   child: Row(
@@ -59,7 +54,7 @@ class course extends StatelessWidget {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: const EdgeInsets.only(left: 18.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +70,7 @@ class course extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+
 
               FutureBuilder(
                 future: getdata(provider, context),

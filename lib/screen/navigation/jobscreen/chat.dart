@@ -512,16 +512,16 @@ class Bottomlayout extends StatelessWidget {
                     sendRequestFunction: (soundFile) async {
 
 
-                      final key = provider.database.child('chat').child(provider.prefs.getString('phone')).push();
-                      String downloadURL = await FirebaseHelper.uploadFiles(soundFile,provider,provider.prefs.getString('phone'));
-                      key.set(
-                          {
-                            'text': null
-                            ,'img':null, 'video':null,'voice':downloadURL,'doc':null,
-                            'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
-                            'timestamp': ServerValue.timestamp
-                          }
-                      );
+                      // final key = provider.database.child('chat').child(provider.prefs.getString('phone')).push();
+                      // // String downloadURL = await FirebaseHelper.uploadFiles(soundFile,provider,provider.prefs.getString('phone'));
+                      // key.set(
+                      //     {
+                      //       'text': null
+                      //       ,'img':null, 'video':null,'voice':downloadURL,'doc':null,
+                      //       'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
+                      //       'timestamp': ServerValue.timestamp
+                      //     }
+                      // );
 
                       provider.textEditingController!.clear();
                       provider.notifyListeners();
@@ -587,16 +587,16 @@ class Bottomlayout extends StatelessWidget {
                         if (result != null) {
 
                           final key = provider.database.child('chat').child(provider.prefs.getString('phone')).push();
-                          String downloadURL = await FirebaseHelper.uploadFiles( File.fromUri(Uri.file(result.files.single.path! ))
-                              ,provider,provider.prefs.getString('phone'));
-                          key.set(
-                              {
-                                'text': null
-                                ,'img':null, 'video':null,'voice':null,'doc':downloadURL,
-                                'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
-                                'timestamp': ServerValue.timestamp
-                              }
-                          );
+                          // String downloadURL = await FirebaseHelper.uploadFiles( File.fromUri(Uri.file(result.files.single.path! ))
+                          //     ,provider,provider.prefs.getString('phone'));
+                          // key.set(
+                          //     {
+                          //       'text': null
+                          //       ,'img':null, 'video':null,'voice':null,'doc':downloadURL,
+                          //       'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
+                          //       'timestamp': ServerValue.timestamp
+                          //     }
+                          // );
 
                           provider.textEditingController!.clear();
                           provider.notifyListeners();
@@ -690,15 +690,15 @@ class ImageVideoshow extends StatelessWidget {
 
                                 final key = provider.database.child('chat').child(provider.prefs.getString('phone')).push();
                                 log(key.key.toString());
-                                String downloadURL = await FirebaseHelper.uploadFiles(file,provider,provider.prefs.getString("phone"));
-                                key.set(
-                                    {
-                                      'text': provider.textEditingController!.text!=''? provider.textEditingController!.text: null
-                                      ,'img':downloadURL, 'video':null,'voice':null,'doc':null,
-                                      'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
-                                      'timestamp': ServerValue.timestamp
-                                    }
-                                );
+                                // String downloadURL = await FirebaseHelper.uploadFiles(file,provider,provider.prefs.getString("phone"));
+                                // key.set(
+                                //     {
+                                //       'text': provider.textEditingController!.text!=''? provider.textEditingController!.text: null
+                                //       ,'img':downloadURL, 'video':null,'voice':null,'doc':null,
+                                //       'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
+                                //       'timestamp': ServerValue.timestamp
+                                //     }
+                                // );
 
 
                                 provider.textEditingController!.clear();
@@ -837,16 +837,16 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                               });
 
                               final key = provider.database.child('chat').child(provider.prefs.getString('phone')).push();
-                              String downloadURL = await FirebaseHelper.uploadFiles(widget.videoPath,provider,
-                                  provider.prefs.getString('phone'));
-                              key.set(
-                                  {
-                                    'text': provider.textEditingController!.text!=''? provider.textEditingController!.text: null
-                                    ,'img':null, 'video':downloadURL,'voice':null,'doc':null,
-                                    'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
-                                    'timestamp': ServerValue.timestamp
-                                  }
-                              );
+                              // String downloadURL = await FirebaseHelper.uploadFiles(widget.videoPath,provider,
+                              //     provider.prefs.getString('phone'));
+                              // key.set(
+                              //     {
+                              //       'text': provider.textEditingController!.text!=''? provider.textEditingController!.text: null
+                              //       ,'img':null, 'video':downloadURL,'voice':null,'doc':null,
+                              //       'time': "${TimeOfDay.now().hour}:${TimeOfDay.now().minute} ${TimeOfDay.now().period.name}",
+                              //       'timestamp': ServerValue.timestamp
+                              //     }
+                              // );
 
 
                               provider.textEditingController!.clear();

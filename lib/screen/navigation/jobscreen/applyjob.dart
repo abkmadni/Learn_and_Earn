@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, use_build_context_synchronously, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/tools/top.dart';
@@ -92,12 +94,14 @@ class applyjob extends StatelessWidget {
             InkWell(
               onTap: () async {
 
-                  final key = await provider.database.child('applyjob').child(provider.prefs.getString('phone')).push();
+                  final key = provider.database.child('applyjob').push();
                   await key.set({
                     "title":data['title'],
                     "des":data['des'],
                     "salary":data['salary'],
-                    'added':data['added']
+                    'added':data['added'],
+                    'comp':data['comp'],
+                    'appliedby' : provider.prefs.getString('phone')
                   });
 
                   AppLayout.showsnakbar(context, "Applied sucessfully");

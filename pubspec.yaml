@@ -61,7 +61,6 @@ dependencies:
   video_thumbnail: ^0.5.3
 
   simple_animations: ^5.0.2
-  simple_ripple_animation: ^0.0.7
   syncfusion_flutter_charts: ^20.4.54
 
 dev_dependencies:
