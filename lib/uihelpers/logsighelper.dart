@@ -5,40 +5,59 @@ import 'package:my_flutter_app/tools/col.dart';
 import '../tools/applayout.dart';
 
 class logsighelper extends StatelessWidget {
-  logsighelper({Key? key,required this.text1,required this.text2,required this.text3}) : super(key: key);
-  String text1,text2,text3;
+  logsighelper(
+      {Key? key, required this.text1, required this.text2, required this.text3})
+      : super(key: key);
+  String text1, text2, text3;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppLayout.getheight(context)*0.3,
-      child: Row(
+      height: AppLayout.getheight(context) * 0.4,
+      child: Column(
         children: [
-
-          Image.asset('assets/login.jpg',width: AppLayout.getwidth(context) *0.5 ,),
-
+          Image.asset(
+            'assets/logo.png',
+            width: AppLayout.getwidth(context) * 0.5,
+          ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0,bottom: 8,left: 8,right: 24),
-              child: Column(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(text1,style: TextStyle(fontFamily: 'pointpanther',
-                      fontSize: AppLayout.getwidth(context)*0.15),),
-                  Text(text2,style: TextStyle(fontFamily: 'pointpanther',
-                      fontSize: AppLayout.getwidth(context)*0.15,color: col.pruple),),
                   Text(
-                    text3,
-                    style: GoogleFonts.roboto(fontSize: AppLayout.getwidth(context)*0.035),
-                    textAlign: TextAlign.justify,),
+                    text1,
+                    style: TextStyle(
+                        fontFamily: 'pointpanther',
+                        fontSize: AppLayout.getwidth(context) * 0.1),
+                  ),
+                  Text(
+                    text2,
+                    style: TextStyle(
+                        fontFamily: 'pointpanther',
+                        fontSize: AppLayout.getwidth(context) * 0.1,
+                        color: col.pruple),
+                  ),
                 ],
               ),
             ),
           ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppLayout.getwidth(context) * 0.1),
+              child: Text(
+                text3,
+                style: GoogleFonts.roboto(
+                    fontSize: AppLayout.getwidth(context) * 0.045),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          )
         ],
       ),
     );
-
   }
 }

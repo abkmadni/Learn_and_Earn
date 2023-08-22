@@ -18,65 +18,61 @@ class splashscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    AppState provider = Provider.of(context,listen: false);
+    AppState provider = Provider.of(context, listen: false);
     provider.sharepref();
-    provider.change_screen(context,provider);
+    provider.change_screen(context, provider);
 
     return Scaffold(
-      backgroundColor: col.wh ,
+      backgroundColor: col.wh,
       body: SafeArea(
-          child :
-          Row(
-            children: [
-
-              // Image.asset(
-              //       'assets/splashimg.jpg',width: AppLayout.getwidth(context)*0.5 ,height: AppLayout.getheight(context),
-              //       fit: BoxFit.fitHeight,
-              //     ),
-
-
-
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 58),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-
-                              Text('Learn &',style: GoogleFonts.roboto(fontWeight:FontWeight.bold,
-                                  fontSize: AppLayout.getwidth(context)*0.1 ),),
-                          Text('Earn',style: GoogleFonts.roboto(fontWeight:FontWeight.bold,
-                              fontSize: AppLayout.getwidth(context)*0.1 ,color:  col.pruple ),),
-
-
-                          Text(
-                            'There you can Learn different new technologies and at the same time make you career better by exploring jobs',
-                            style: GoogleFonts.roboto(
-                              fontSize: AppLayout.getwidth(context)*0.04 ),textAlign: TextAlign.justify,),
-
-
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Lottie.asset('assets/loading.json',repeat: true,),
-                          ),
-
-
-                        ],
-                      ),
+          child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 58),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    width: AppLayout.getwidth(context) * 0.5,
                   ),
-                ),
-
-
-            ],
-          )
-        ),
-
+                  Text(
+                    'Learn &',
+                    style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppLayout.getwidth(context) * 0.1),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    'Earn',
+                    style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppLayout.getwidth(context) * 0.1,
+                        color: col.pruple),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    'Learn & Earn is a platform where you can learn and earn by learning new skills and applying for jobs.',
+                    style: GoogleFonts.roboto(
+                        fontSize: AppLayout.getwidth(context) * 0.04),
+                    textAlign: TextAlign.left,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Lottie.asset(
+                      'assets/loading.json',
+                      repeat: true,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      )),
     );
-
-
   }
 }
-

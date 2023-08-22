@@ -30,7 +30,7 @@ class stuorjob extends StatelessWidget {
 
             children: [
 
-              Text('Select a Catagory',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
+              Text('Select a Category',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
                   fontSize: AppLayout.getwidth(context)*0.1),),
 
                Row(
