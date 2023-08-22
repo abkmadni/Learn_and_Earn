@@ -16,179 +16,167 @@ import '../../uihelpers/genderhelper.dart';
 import '../homepage.dart';
 
 class detail extends StatelessWidget {
-  detail({Key? key,required this.phone}) : super(key: key);
+  detail({Key? key, required this.phone}) : super(key: key);
   String phone;
 
   @override
   Widget build(BuildContext context) {
-
-    AppState provider = Provider.of<AppState>(context,listen: false);
+    AppState provider = Provider.of<AppState>(context, listen: false);
 
     return Scaffold(
       backgroundColor: col.wh,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
             children: [
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Text('Enter Basic Details',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
-                    fontSize: AppLayout.getwidth(context)*0.1),),
+                child: Text(
+                  'Enter Basic Details',
+                  style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      fontSize: AppLayout.getwidth(context) * 0.1),
+                ),
               ),
-
-
               Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Column(
-
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
-
                   children: [
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Select Image',style: GoogleFonts.roboto(
-                          fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
+                      child: Text(
+                        'Select Image',
+                        style: GoogleFonts.roboto(
+                            fontSize: AppLayout.getwidth(context) * 0.05,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-
-
-
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 22.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
-
-                          Consumer<AppState>(
-                              builder: (context, myprovider, _){
-                                return  myprovider.image == null
-                                    ? const CircleAvatar(
-                                  backgroundImage: AssetImage('assets/avatar.jpg'),
-                                  radius: 80.0,
-                                )
-                                    : CircleAvatar(
-                                  backgroundImage: FileImage(myprovider.image!),
-                                  radius: 80.0,
-                                );
-                              }
-                          ),
-
-
+                          Consumer<AppState>(builder: (context, myprovider, _) {
+                            return myprovider.image == null
+                                ? const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/avatar.jpg'),
+                                    radius: 80.0,
+                                  )
+                                : CircleAvatar(
+                                    backgroundImage:
+                                        FileImage(myprovider.image!),
+                                    radius: 80.0,
+                                  );
+                          }),
                           InkWell(
-                                onTap: () async {
+                            onTap: () async {
+                              final pickedFile = await ImagePicker()
+                                  .pickImage(source: ImageSource.gallery);
+                              if (pickedFile != null) {
+                                provider.image = File(pickedFile.path);
+                                provider.notifyListeners();
 
-                                  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-                                  if (pickedFile != null) {
-                                    provider.image = File(pickedFile.path);
-                                    provider.notifyListeners();
+                                String url = await FirebaseHelper.uploadFile(
+                                    provider.image, provider, phone);
 
-                                    String url = await FirebaseHelper.uploadFile(provider.image,provider,phone);
-
-                                    provider.database.child('user').child(phone).child('img').set(url);
-                                    provider.prefs.setString('img',url);
-                                  }
-
-
-                                },
+                                provider.database
+                                    .child('user')
+                                    .child(phone)
+                                    .child('img')
+                                    .set(url);
+                                provider.prefs.setString('img', url);
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: col.wh,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        width: 2, color: col.pruple)),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: col.wh,
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            width: 2,
-                                            color: col.pruple
-                                        )
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text('Upload Image',style: GoogleFonts.roboto(
-                                          fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
-                                    ),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Upload Image',
+                                    style: GoogleFonts.roboto(
+                                        fontSize:
+                                            AppLayout.getwidth(context) * 0.05,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
+                              ),
+                            ),
                           ),
-
-
                         ],
                       ),
                     ),
-
-
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Enter last education',style: GoogleFonts.roboto(
-                          fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
+                      child: Text(
+                        'Latest Education',
+                        style: GoogleFonts.roboto(
+                            fontSize: AppLayout.getwidth(context) * 0.05,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Row(
                         children: [
-
                           Container(
                             height: 68,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: col.gr
-                            ),
+                                color: col.gr),
                             child: const Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Icon(CupertinoIcons.square_stack_3d_up,color: col.pruple,),
+                              child: Icon(
+                                CupertinoIcons.square_stack_3d_up,
+                                color: col.pruple,
+                              ),
                             ),
                           ),
-
-                          const Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-
+                          const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5)),
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: col.gr
-                              ),
+                                  color: col.gr),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child:
-                                TextField(
-                                  style:  GoogleFonts.roboto(),
-                                  onChanged: (value){
+                                child: TextField(
+                                  style: GoogleFonts.roboto(),
+                                  onChanged: (value) {
                                     provider.edu = value;
                                   },
                                   decoration: InputDecoration(
-                                      hintText: 'Enter last education',
+                                      hintText: 'Enter your latest education',
                                       hintStyle: GoogleFonts.roboto(),
-                                      border: InputBorder.none
-                                  ),
+                                      border: InputBorder.none),
                                   // keyboardType: ,
                                 ),
-
-
                               ),
                             ),
                           ),
-
-
-
                         ],
                       ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text('Select Gender',style: GoogleFonts.roboto(
-                          fontSize: AppLayout.getwidth(context)*0.05,fontWeight: FontWeight.bold),),
+                      child: Text(
+                        'Select Gender',
+                        style: GoogleFonts.roboto(
+                            fontSize: AppLayout.getwidth(context) * 0.05,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-
-
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Row(
@@ -196,68 +184,76 @@ class detail extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          genderhelper(text2: 'Male',),
-                          genderhelper(text2: 'Female',),
+                          genderhelper(
+                            text2: 'Male',
+                          ),
+                          genderhelper(
+                            text2: 'Female',
+                          ),
                         ],
                       ),
                     )
-
-
                   ],
-
                 ),
               ),
-
-
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: InkWell(
-                    onTap: (){
-
-                      if(provider.cat == ''){
-                        AppLayout.showsnakbar(context, 'Please Select a gender');
-                      } else if (provider.edu == ''){
-                        AppLayout.showsnakbar(context, 'Please add latest education');
-                      } else{
-                        provider.database.child('user').child(phone).child('gender').set(provider.cat);
-                        provider.database.child('user').child(phone).child('edu').set(provider.edu);
-                        provider.prefs.setString('education',provider.edu);
-                        Navigator.pushReplacement(context, PageTransition(
-                            child:  Homepage(), type: PageTransitionType.fade));
+                    onTap: () {
+                      if (provider.cat == '') {
+                        AppLayout.showsnakbar(
+                            context, 'Please Select a gender');
+                      } else if (provider.edu == '') {
+                        AppLayout.showsnakbar(
+                            context, 'Please add Latest education');
+                      } else {
+                        provider.database
+                            .child('user')
+                            .child(phone)
+                            .child('gender')
+                            .set(provider.cat);
+                        provider.database
+                            .child('user')
+                            .child(phone)
+                            .child('edu')
+                            .set(provider.edu);
+                        provider.prefs.setString('education', provider.edu);
+                        Navigator.pushReplacement(
+                            context,
+                            PageTransition(
+                                child: Homepage(),
+                                type: PageTransitionType.fade));
                         provider.cat = '';
                       }
-
-
                     },
                     child: Container(
                       height: 50,
-                      width: AppLayout.getwidth(context)*0.3,
+                      width: AppLayout.getwidth(context) * 0.3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: col.pruple
-                      ),
-                      child:Padding(
+                          color: col.pruple),
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child:Text(
-                            'Next',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: col.wh
-                              ,fontSize: AppLayout.getwidth(context)*0.05 ),),
+                          child: Text(
+                            'Next',
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                color: col.wh,
+                                fontSize: AppLayout.getwidth(context) * 0.05),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-
             ],
-
           ),
         ),
       ),
-
     );
   }
 }
-
