@@ -53,5 +53,10 @@ class AppState extends ChangeNotifier {
   // chat
   bool chatbottom = false;
 
+  void saveImage(image) {
+    this.image = image;
+    notifyListeners();
+  }
+
 }
 

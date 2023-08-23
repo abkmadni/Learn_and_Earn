@@ -1,5 +1,4 @@
-import 'dart:async';
-import 'dart:ui' as ui; // Import the ui library for Image
+import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +7,8 @@ import 'package:lottie/lottie.dart';
 import 'package:my_flutter_app/tools/top.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_flutter_app/tools/applayout.dart';
-import 'package:my_flutter_app/tools/appstate.dart';
-import 'package:my_flutter_app/tools/certificatepainter.dart';
+import '../../../tools/applayout.dart';
+import '../../../tools/appstate.dart';
 
 class certificate extends StatelessWidget {
   certificate({super.key, required this.title});
@@ -25,7 +23,7 @@ class certificate extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              top(title: "Congratulations"),
+              top(title: "Congratulations!"),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Lottie.asset('assets/congratulations.json',
@@ -38,29 +36,15 @@ class certificate extends StatelessWidget {
                       return Column(
                         children: [
                           InkWell(
-                            onTap: () async {
-                              final bgImage = await loadImage(
-                                  snapshot.data.value.toString());
-                              final customPainter = CertificatePainter(
-                                backgroundImage: bgImage as ImageProvider,
-                                studentName: provider.name,
-                                courseName: title,
-                              );
-
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return Dialog(
-                                    child: Container(
-                                      width: AppLayout.getwidth(context),
-                                      height: AppLayout.getwidth(context),
-                                      child: CustomPaint(
-                                        painter: customPainter,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
+                            onTap: () {
+                              final key = provider.database
+                                  .child('getcer')
+                                  .child(provider.prefs.getString('phone'))
+                                  .push();
+                              key.set({
+                                'title': title,
+                                'link': snapshot.data.value.toString()
+                              }).then((value) => Navigator.pop(context));
                             },
                             child: Container(
                               width: AppLayout.getwidth(context),
@@ -107,22 +91,11 @@ class certificate extends StatelessWidget {
                     } else {
                       return const CircularProgressIndicator();
                     }
-                  }),
+                  })
             ],
           ),
         ),
       ),
     );
-  }
-
-  Future<ui.Image> loadImage(String imageUrl) async {
-    final Completer<ui.Image> completer = Completer<ui.Image>();
-    final ImageStream stream = CachedNetworkImageProvider(imageUrl)
-        .resolve(const ImageConfiguration());
-    stream.addListener(
-        ImageStreamListener((ImageInfo image, bool synchronousCall) {
-      completer.complete(image.image);
-    }));
-    return completer.future;
   }
 }

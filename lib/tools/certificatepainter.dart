@@ -1,65 +1,92 @@
-import 'dart:async';
-import 'dart:ui' as ui; // Import the ui library for Image
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // For formatting the date
+import 'package:google_fonts/google_fonts.dart';
+import 'package:my_flutter_app/tools/applayout.dart';
+import 'package:my_flutter_app/tools/appstate.dart';
+import 'package:my_flutter_app/tools/top.dart';
+import 'package:provider/provider.dart';
 
-class CertificatePainter extends CustomPainter {
-  final ImageProvider backgroundImage;
-  final String studentName;
-  final String courseName;
+class CertificatePainter extends StatelessWidget {
+  final String? studentName;
+  final String? courseName;
 
-  CertificatePainter({
-    required this.backgroundImage,
+  const CertificatePainter({
     required this.studentName,
     required this.courseName,
   });
 
   @override
-  void paint(Canvas canvas, Size size) async {
-    final background = await loadImage(backgroundImage);
-    final bgRect = Rect.fromLTWH(0, 0, size.width, size.height);
-    canvas.drawImageRect(background, Rect.fromLTRB(0, 0, background.width.toDouble(), background.height.toDouble()), bgRect, Paint());
-
-    final textStyle = TextStyle(
-      color: Colors.black,
-      fontSize: 18,
-      fontWeight: FontWeight.normal,
+  Widget build(BuildContext context) {
+    AppState provider = Provider.of<AppState>(context, listen: false);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              top(title: "Certificate"),
+              SizedBox(
+                height: AppLayout.getheight(context) * 0.1,
+              ),
+              Stack(
+                children: [
+                  Container(
+                    height: 270,
+                    child: Image.asset(
+                      'assets/certificate_template.png',
+                      fit: BoxFit.cover,
+                      width: 800,
+                      height: 1200,
+                    ),
+                  ),
+                  Positioned(
+                    top: 120,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        'This certificate is proudly presented for honorable achievement to',
+                        style: TextStyle(
+                            fontFamily: 'garet',
+                            fontSize: 8,
+                            color: Color(0xFF7C7C7C)),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 140,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        '$studentName',
+                        style: GoogleFonts.greatVibes(
+                          fontSize: 20,
+                          color: Color(0xFF1F2B5B),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 170,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        'For successfully completing the course "$courseName"',
+                        style: TextStyle(
+                            fontFamily: 'garet',
+                            fontSize: 8,
+                            color: Color(0xFF7C7C7C)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
-
-    final today = DateTime.now();
-    final formattedDate = DateFormat('MMMM d, y').format(today);
-
-    final message = 'This certificate is proudly presented for honorable achievement to $studentName participating in "$courseName" given this $formattedDate.';
-
-    final recorder = ui.PictureRecorder();
-    final textCanvas = Canvas(recorder, bgRect);
-
-    final textParagraph = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: TextAlign.left, fontSize: textStyle.fontSize))
-      ..pushStyle(textStyle.getTextStyle())
-      ..addText(message);
-    
-    final paragraph = textParagraph.build();
-    paragraph.layout(ui.ParagraphConstraints(width: size.width - 100)); // Adjust width as needed
-
-    textCanvas.drawParagraph(paragraph, Offset(50, 200)); // Adjust position as needed
-
-    final picture = recorder.endRecording();
-    final img = await picture.toImage(size.width.toInt(), size.height.toInt());
-    final imgRect = Rect.fromLTWH(0, 0, size.width, size.height);
-    canvas.drawImageRect(img, imgRect, imgRect, Paint());
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
-  }
-
-  Future<ui.Image> loadImage(ImageProvider provider) async {
-    final completer = Completer<ui.Image>();
-    final stream = provider.resolve(const ImageConfiguration());
-    stream.addListener(ImageStreamListener((info, synchronousCall) {
-      completer.complete(info.image);
-    }));
-    return completer.future;
   }
 }

@@ -59,7 +59,7 @@ class stuorjob extends StatelessWidget {
                         Navigator.pushReplacement(context, PageTransition(
                             child:  detail(phone: phone,), type: PageTransitionType.fade));
                       }else{
-                        AppLayout.showsnakbar(context, 'Please Select a Catagory');
+                        AppLayout.showsnakbar(context, 'Please Select a Category');
                       }
 
 
