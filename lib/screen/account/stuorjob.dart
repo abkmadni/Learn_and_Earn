@@ -30,7 +30,7 @@ class stuorjob extends StatelessWidget {
 
             children: [
 
-              Text('Select a Catagory',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
+              Text('Select a Category',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,
                   fontSize: AppLayout.getwidth(context)*0.1),),
 
                Row(
@@ -59,7 +59,7 @@ class stuorjob extends StatelessWidget {
                         Navigator.pushReplacement(context, PageTransition(
                             child:  detail(phone: phone,), type: PageTransitionType.fade));
                       }else{
-                        AppLayout.showsnakbar(context, 'Please Select a Catagory');
+                        AppLayout.showsnakbar(context, 'Please Select a Category');
                       }
 
 

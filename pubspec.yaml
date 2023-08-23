@@ -59,6 +59,7 @@ dependencies:
   voice_message_package: ^1.0.41
   social_media_recorder: ^0.1.86
   video_thumbnail: ^0.5.3
+  image_gallery_saver: '^2.0.3'
 
   simple_animations: ^5.0.2
   syncfusion_flutter_charts: ^20.4.54
@@ -78,7 +79,7 @@ dev_dependencies:
 
 
 flutter_icons:
-  image_path: "assets/logo.jpeg"
+  image_path: "assets/logo.png"
   android: true
   ios: true
   min_sdk_android: 21
@@ -115,12 +116,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: pointpanther
-       fonts:
-         - asset: fonts/pointpanther.ttf
-     - family: paul
-       fonts:
-         - asset: fonts/PaulGroteskSoft-Regular-Trail.otf
+    - family: pointpanther
+      fonts:
+        - asset: fonts/pointpanther.ttf
+    - family: paul
+      fonts:
+        - asset: fonts/PaulGroteskSoft-Regular-Trail.otf
+    - family: Garet-Book
+      fonts:
+        - asset: fonts/Garet-Book.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
