@@ -20,29 +20,38 @@ class certificateview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    AppState provider = Provider.of<AppState>(context,listen: false);
+    AppState provider = Provider.of<AppState>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-
-            top(title: 'Certificate',),
-
+            top(
+              title: 'Certificate',
+            ),
             Expanded(
               child: FirebaseAnimatedList(
-                  query: provider.database.child('started').child(provider.prefs.getString('phone')),
-                  itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+                  query: provider.database
+                      .child('started')
+                      .child(provider.prefs.getString('phone')),
+                  itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                      Animation<double> animation, int index) {
                     Map cfdata = snapshot.value as Map;
                     return FutureBuilder(
-                        future: coursedataf(provider,snapshot.value as Map),
-                        builder: (BuildContext context, AsyncSnapshot snapshot1) {
+                        future: coursedataf(provider, snapshot.value as Map),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot1) {
                           if (snapshot1.hasData) {
                             return InkWell(
-                              onTap: (){
-                                Navigator.push(context, PageTransition(
-                                    child: coursedata(dataa: snapshot1.data,indexx: index,), type: PageTransitionType.fade));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        child: coursedata(
+                                          dataa: snapshot1.data,
+                                          indexx: index,
+                                        ),
+                                        type: PageTransitionType.fade));
                               },
                               child: Container(
                                 width: AppLayout.getwidth(context),
@@ -53,10 +62,12 @@ class certificateview extends StatelessWidget {
                                   color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.withOpacity(0.3), // Shadow color
-                                      spreadRadius:2, // Spread radius
+                                      color: Colors.grey
+                                          .withOpacity(0.3), // Shadow color
+                                      spreadRadius: 2, // Spread radius
                                       blurRadius: 2, // Blur radius
-                                      offset: const Offset(0, 0), // Offset in the x and y direction
+                                      offset: const Offset(0,
+                                          0), // Offset in the x and y direction
                                     ),
                                   ],
                                 ),
@@ -64,133 +75,223 @@ class certificateview extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-
-                                     Row(
-                                        children: [
-                                          CachedNetworkImage(
-                                            imageUrl: snapshot1.data['img'].toString(),
-                                            width: AppLayout.getwidth(context) * 0.15,
-                                            height: AppLayout.getwidth(context) * 0.15,
-                                            fit: BoxFit.cover,
-                                            placeholder: (context, url) =>
-                                            const Center(child: CircularProgressIndicator()),
-                                            errorWidget: (context, url, error) =>
-                                            const Center(child: Icon(Icons.error)),
-                                          ),
-
-                                          const SizedBox(width: 5,),
-
-                                          Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                    Row(
+                                      children: [
+                                        CachedNetworkImage(
+                                          imageUrl:
+                                              snapshot1.data['img'].toString(),
+                                          width: AppLayout.getwidth(context) *
+                                              0.15,
+                                          height: AppLayout.getwidth(context) *
+                                              0.15,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) =>
+                                              const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              const Center(
+                                                  child: Icon(Icons.error)),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              snapshot1.data['title']
+                                                  .toString(),
+                                              style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: AppLayout.getwidth(
+                                                        context) *
+                                                    0.045,
+                                              ),
+                                            ),
+                                            Wrap(
                                               children: [
-                                                Text(snapshot1.data['title'].toString(), style: GoogleFonts.poppins(
-                                                    fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.045,
-                                                ),),
-
-                                                Wrap(
-                                                  children: [
-                                                    Text('Total :  ', style: GoogleFonts.roboto(
-                                                        fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.04
-                                                    ),),
-                                                    Text(snapshot1.data['tvideo'].toString(), style: GoogleFonts.roboto(
-                                                        fontSize: AppLayout.getwidth(context)*0.04
-                                                    ),),
-                                                  ],
+                                                Text(
+                                                  'Total :  ',
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          AppLayout.getwidth(
+                                                                  context) *
+                                                              0.04),
                                                 ),
-
-                                                Wrap(
-                                                  children: [
-                                                    Text('Completed :  ', style: GoogleFonts.roboto(color: Colors.green,
-                                                        fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.04
-                                                    ),),
-                                                    Text( cfdata.length.toString() , style: GoogleFonts.roboto(
-                                                        fontSize: AppLayout.getwidth(context)*0.04,color: Colors.green
-                                                    ),),
-                                                  ],
+                                                Text(
+                                                  snapshot1.data['tvideo']
+                                                      .toString(),
+                                                  style: GoogleFonts.roboto(
+                                                      fontSize:
+                                                          AppLayout.getwidth(
+                                                                  context) *
+                                                              0.04),
                                                 ),
-
                                               ],
                                             ),
-
-                                          Expanded(
-                                            child: SizedBox(
-                                              height: 70,
-                                              child: Center(
-                                                child: SfCircularChart(
-                                                  series: <CircularSeries>[
-                                                    DoughnutSeries<ChartData, String>(
-                                                      dataSource: [
-                                                        ChartData('Total', double.parse(snapshot1.data['tvideo'].toString())),
-                                                        ChartData('Completed', double.parse(cfdata.length.toString())),
-                                                      ],
-                                                      xValueMapper: (ChartData data, _) => data.category,
-                                                      yValueMapper: (ChartData data, _) => data.value,
-                                                      dataLabelSettings: const DataLabelSettings(isVisible: true,
-                                                          labelPosition: ChartDataLabelPosition.outside),
-                                                    ),
-                                                  ],
+                                            Wrap(
+                                              children: [
+                                                Text(
+                                                  'Completed :  ',
+                                                  style: GoogleFonts.roboto(
+                                                      color: Colors.green,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          AppLayout.getwidth(
+                                                                  context) *
+                                                              0.04),
                                                 ),
+                                                Text(
+                                                  cfdata.length.toString(),
+                                                  style: GoogleFonts.roboto(
+                                                      fontSize:
+                                                          AppLayout.getwidth(
+                                                                  context) *
+                                                              0.04,
+                                                      color: Colors.green),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 70,
+                                            child: Center(
+                                              child: SfCircularChart(
+                                                series: <CircularSeries>[
+                                                  DoughnutSeries<ChartData,
+                                                      String>(
+                                                    dataSource: [
+                                                      ChartData(
+                                                          'Total',
+                                                          double.parse(snapshot1
+                                                              .data['tvideo']
+                                                              .toString())),
+                                                      ChartData(
+                                                          'Completed',
+                                                          double.parse(cfdata
+                                                              .length
+                                                              .toString())),
+                                                    ],
+                                                    xValueMapper:
+                                                        (ChartData data, _) =>
+                                                            data.category,
+                                                    yValueMapper:
+                                                        (ChartData data, _) =>
+                                                            data.value,
+                                                    dataLabelSettings:
+                                                        const DataLabelSettings(
+                                                            isVisible: true,
+                                                            labelPosition:
+                                                                ChartDataLabelPosition
+                                                                    .outside),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-
-                                        ],
+                                        ),
+                                      ],
                                     ),
-
-
                                     InkWell(
-                                      onTap: (){
-                                        if(snapshot1.data['tvideo'] == cfdata.length){
-
-                                          provider.database.child('getcer').child(provider.prefs.getString('phone')).get()
+                                      onTap: () {
+                                        if (snapshot1.data['tvideo'] ==
+                                            cfdata.length) {
+                                          provider.database
+                                              .child('getcer')
+                                              .child(provider.prefs
+                                                  .getString('phone'))
+                                              .get()
                                               .then((value) {
-                                            if(value.exists){
+                                            if (value.exists) {
                                               Map ti = value.value as Map;
 
-                                              List ff =[];
-                                              ti.values.forEach((val){
+                                              List ff = [];
+                                              ti.values.forEach((val) {
                                                 ff.add(val['title'].toString());
                                               });
 
-                                              if(ff.contains(snapshot1.data['title'].toString())){
-                                                AppLayout.showsnakbar(context, 'Already Collected');
-                                              }else {
-                                                Navigator.push(context, PageTransition(child: certificate(
-                                                  title: snapshot1.data['title'].toString(),), type: PageTransitionType.fade));
+                                              if (ff.contains(snapshot1
+                                                  .data['title']
+                                                  .toString())) {
+                                                AppLayout.showsnakbar(context,
+                                                    'Already Collected');
+                                              } else {
+                                                Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                        child: certificate(
+                                                          title: snapshot1
+                                                              .data['title']
+                                                              .toString(),
+                                                        ),
+                                                        type: PageTransitionType
+                                                            .fade));
                                               }
-
-
-                                            }else{
-                                              Navigator.push(context, PageTransition(
-                                                  child: certificate(title: snapshot1.data['title'].toString(),),
-                                                  type: PageTransitionType.fade));
+                                            } else {
+                                              Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                      child: certificate(
+                                                        title: snapshot1
+                                                            .data['title']
+                                                            .toString(),
+                                                      ),
+                                                      type: PageTransitionType
+                                                          .fade));
                                             }
                                           });
-
-                                        }else{
-                                          Navigator.push(context, PageTransition(
-                                              child: coursedata(dataa: snapshot1.data,indexx: index,), type: PageTransitionType.fade));
+                                        } else {
+                                          Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                  child: coursedata(
+                                                    dataa: snapshot1.data,
+                                                    indexx: index,
+                                                  ),
+                                                  type:
+                                                      PageTransitionType.fade));
                                         }
                                       },
                                       child: Container(
                                         margin: const EdgeInsets.all(5),
                                         padding: const EdgeInsets.all(5),
                                         decoration: BoxDecoration(
-                                          color: snapshot1.data['tvideo'] == cfdata.length? Colors.green:Colors.amber,
-                                          borderRadius: BorderRadius.circular(10),
+                                          color: snapshot1.data['tvideo'] ==
+                                                  cfdata.length
+                                              ? Colors.green
+                                              : Colors.amber,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: Center(
-                                          child: Text(snapshot1.data['tvideo'] == cfdata.length?'Collect Certificate':'Continue Course',
+                                          child: Text(
+                                            snapshot1.data['tvideo'] ==
+                                                    cfdata.length
+                                                ? 'Collect Certificate'
+                                                : 'Continue Course',
                                             style: GoogleFonts.roboto(
-                                                fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.045,
-                                                color: snapshot1.data['tvideo'] == cfdata.length? Colors.white:Colors.black
-                                            ),),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: AppLayout.getwidth(
+                                                        context) *
+                                                    0.045,
+                                                color:
+                                                    snapshot1.data['tvideo'] ==
+                                                            cfdata.length
+                                                        ? Colors.white
+                                                        : Colors.black),
+                                          ),
                                         ),
                                       ),
                                     )
-
-
                                   ],
                                 ),
                               ),
@@ -201,40 +302,35 @@ class certificateview extends StatelessWidget {
                             return const CircularProgressIndicator();
                           }
                         });
-                  }
-              ),
+                  }),
             ),
-
           ],
         ),
       ),
     );
   }
 
-  Future<Map> coursedataf(AppState provider,Map search) async {
+  Future<Map> coursedataf(AppState provider, Map search) async {
     List f = [];
-    Map fdata= {};
-    await provider.database.child("course").get().then((value){
-      if(value.exists) {
-        f =  value.value as List;
+    Map fdata = {};
+    await provider.database.child("course").get().then((value) {
+      if (value.exists) {
+        f = value.value as List;
         f.forEach((element) {
-          if(element != null) {
-            if(element['title'] == search['title']){
+          if (element != null) {
+            if (element['title'] == search['title']) {
               fdata = element;
             }
           }
         });
         return fdata;
-      } else{
+      } else {
         return fdata;
       }
     });
     return fdata;
   }
-
-
 }
-
 
 class ChartData {
   final String category;

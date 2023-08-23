@@ -23,7 +23,7 @@ class certificate extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              top(title: "Congratulations!"),
+              top(title: "congratulations"),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Lottie.asset('assets/congratulations.json',
