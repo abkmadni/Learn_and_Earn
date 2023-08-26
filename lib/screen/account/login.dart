@@ -173,7 +173,7 @@ class Login extends StatelessWidget {
                                     provider.prefs
                                         .setString('phone', provider.phone);
                                     provider.prefs
-                                        .setString('img', data['img']);
+                                        .setString('img', data['img'].toString());
                                     provider.prefs
                                         .setString('education', data['edu']);
                                     provider.prefs

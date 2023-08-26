@@ -1,4 +1,5 @@
-import 'dart:developer';
+
+// ignore_for_file: must_be_immutable, camel_case_types
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -14,7 +15,6 @@ import 'package:simple_animations/simple_animations.dart';
 import '../../../tools/applayout.dart';
 import '../../../tools/appstate.dart';
 import '../courses.dart';
-import 'profile.dart';
 import 'videoscreen.dart';
 
 class coursedata extends StatelessWidget {
@@ -182,7 +182,7 @@ class coursedata extends StatelessWidget {
                       );
                     }else{
                       return Hero(
-                          tag: "data"+indexx.toString(),
+                          tag: "data$indexx",
                           child: maincoursedata(data: dataa,)
                       );
                     }

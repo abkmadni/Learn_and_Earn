@@ -1,22 +1,29 @@
-import 'dart:developer';
+// ignore_for_file: must_be_immutable, camel_case_types, no_leading_underscores_for_local_identifiers
+
+
+import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:my_flutter_app/tools/top.dart';
 import 'package:provider/provider.dart';
+import 'dart:ui' as ui;
 
 import '../../../tools/applayout.dart';
 import '../../../tools/appstate.dart';
 
 class certificate extends StatelessWidget {
-  certificate({super.key, required this.title});
+  certificate({super.key, required this.title,required this.check});
   String title;
+  bool check;
 
   @override
   Widget build(BuildContext context) {
     AppState provider = Provider.of<AppState>(context, listen: false);
+    GlobalKey _globalKey = GlobalKey();
 
     return Scaffold(
       body: SafeArea(
@@ -24,17 +31,94 @@ class certificate extends StatelessWidget {
           child: Column(
             children: [
               top(title: "congratulations"),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Lottie.asset('assets/congratulations.json',
-                    repeat: true, height: AppLayout.getwidth(context) * 0.3),
-              ),
               FutureBuilder(
                   future: provider.database.child('cer').get(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return Column(
                         children: [
+                          RepaintBoundary(
+                            key: _globalKey,
+                            child: Stack(
+                              children: [
+                                CachedNetworkImage(
+                                  imageUrl: snapshot.data.value.toString(),
+                                  width: AppLayout.getwidth(context),
+                                  height: AppLayout.getwidth(context),
+                                  fit: BoxFit.fitWidth,
+                                  placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      const Center(child: Icon(Icons.error)),
+                                ),
+                                Positioned.fill(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(
+                                        height: 40,
+                                      ),
+                                      Text(
+                                        'This certificate is proudly presented for honorable achievement to',
+                                        style: TextStyle(
+                                            fontFamily: 'garet',
+                                            fontSize:
+                                                AppLayout.getwidth(context) *
+                                                    0.03,
+                                            color: const Color(0xFF7C7C7C)),
+                                      ),
+                                      Text(
+                                        provider.prefs.getString("name"),
+                                        style: GoogleFonts.greatVibes(
+                                          fontSize:
+                                              AppLayout.getwidth(context) * 0.06,
+                                          color: const Color(0xFF1F2B5B),
+                                        ),
+                                      ),
+                                      Text(
+                                        'For successfully completing the course $title',
+                                        style: TextStyle(
+                                            fontFamily: 'garet',
+                                            fontSize:
+                                                AppLayout.getwidth(context) *
+                                                    0.03,
+                                            color: const Color(0xFF7C7C7C)),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          check?
+                              InkWell(
+                                onTap: () async {
+                                  RenderRepaintBoundary boundary =
+                                  _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+                                  ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+                                  ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+                                  Uint8List uint8List = byteData!.buffer.asUint8List();
+                                  await ImageGallerySaver.saveImage(uint8List);
+                                },
+                                child: Container(
+                                  width: AppLayout.getwidth(context),
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.red,
+                                  ),
+                                  child: Center(
+                                    child: Text('Download',
+                                        style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
+                                            AppLayout.getwidth(context) * 0.06,
+                                            color: Colors.white)),
+                                  ),
+                                ),
+                              ):
                           InkWell(
                             onTap: () {
                               final key = provider.database
@@ -53,16 +137,6 @@ class certificate extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.green,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.green
-                                        .withOpacity(0.5), // Shadow color
-                                    spreadRadius: 5, // Spread radius
-                                    blurRadius: 5, // Blur radius
-                                    offset: const Offset(1,
-                                        1), // Offset in the x and y direction
-                                  ),
-                                ],
                               ),
                               child: Center(
                                 child: Text('Collect Certificate',
@@ -73,16 +147,6 @@ class certificate extends StatelessWidget {
                                         color: Colors.white)),
                               ),
                             ),
-                          ),
-                          CachedNetworkImage(
-                            imageUrl: snapshot.data.value.toString(),
-                            width: AppLayout.getwidth(context),
-                            height: AppLayout.getwidth(context),
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => const Center(
-                                child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                const Center(child: Icon(Icons.error)),
                           ),
                         ],
                       );

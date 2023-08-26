@@ -187,7 +187,7 @@ class cer extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Icon(Icons.error_outline);
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           }),
     );
@@ -241,7 +241,7 @@ class abouduser extends StatelessWidget {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CachedNetworkImage(
-                          imageUrl: snapshot.data['img'],
+                          imageUrl: snapshot.data['img'].toString(),
                           width: 80,height: 80,fit: BoxFit.cover,
                           placeholder: (context, url) => const CircularProgressIndicator(),
                           errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -292,7 +292,7 @@ class abouduser extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Icon(Icons.error_outline);
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           })
     );

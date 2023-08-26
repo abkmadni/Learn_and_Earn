@@ -60,6 +60,7 @@ dependencies:
   social_media_recorder: ^0.1.86
   video_thumbnail: ^0.5.3
   image_gallery_saver: '^2.0.3'
+  flutter_screenutil: ^5.0.0
 
   simple_animations: ^5.0.2
   syncfusion_flutter_charts: ^20.4.54

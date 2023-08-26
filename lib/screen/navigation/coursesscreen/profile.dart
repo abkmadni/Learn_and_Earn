@@ -62,10 +62,11 @@ class profile extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageTransition(
-                        child: const CertificatePainter(
-                          studentName: provider.prefs.getString('name'),
-                          courseName: 'Flutter',
-                        ),
+                        child: const certificateview(),
+                        // CertificatePainter(
+                        //   studentName: provider.prefs.getString('name'),
+                        //   courseName: 'Flutter',
+                        // ),
                         type: PageTransitionType.fade),
                   );
                 },
@@ -96,7 +97,7 @@ class profile extends StatelessWidget {
                   Navigator.push(
                       context,
                       PageTransition(
-                          child: faq(), type: PageTransitionType.fade));
+                          child: const faq(), type: PageTransitionType.fade));
                 },
                 child: Container(
                   width: AppLayout.getwidth(context),

@@ -1,12 +1,10 @@
-import 'dart:developer';
+
+// ignore_for_file: must_be_immutable, camel_case_types, avoid_types_as_parameter_names, non_constant_identifier_names
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/tools/applayout.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +12,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../tools/appstate.dart';
 import '../../../tools/col.dart';
-import '../../../tools/top.dart';
 import '../courses.dart';
 
 class videoscreen extends StatefulWidget {
@@ -99,7 +96,7 @@ class _videoscreenState extends State<videoscreen> {
           CurrentPosition(),
           ProgressBar(isExpanded: true),
           RemainingDuration(),
-          PlaybackSpeedButton(),
+          const PlaybackSpeedButton(),
         ],
 
       ), builder: (BuildContext , Widget ) {
@@ -129,14 +126,14 @@ class _videoscreenState extends State<videoscreen> {
                 ),
 
 
-                Expanded(
-                  child: FirebaseAnimatedList(
-                    query: provider.database.child("course"),
-                    itemBuilder: (context, DataSnapshot snapshot, Animation<double> animation, int index) {
-                      Map dataa = snapshot.value as Map;
-                        return maincoursedata(data: dataa);
-                    },),
-                )
+                // Expanded(
+                //   child: FirebaseAnimatedList(
+                //     query: provider.database.child("course"),
+                //     itemBuilder: (context, DataSnapshot snapshot, Animation<double> animation, int index) {
+                //       Map dataa = snapshot.value as Map;
+                //         return maincoursedata(data: dataa);
+                //     },),
+                // )
 
               ],
             ),

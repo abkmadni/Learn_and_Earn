@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: camel_case_types
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -215,15 +215,24 @@ class certificateview extends StatelessWidget {
                                               Map ti = value.value as Map;
 
                                               List ff = [];
-                                              ti.values.forEach((val) {
+                                              for (var val in ti.values) {
                                                 ff.add(val['title'].toString());
-                                              });
+                                              }
 
                                               if (ff.contains(snapshot1
                                                   .data['title']
                                                   .toString())) {
-                                                AppLayout.showsnakbar(context,
-                                                    'Already Collected');
+                                                Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                        child: certificate(
+                                                          title: snapshot1
+                                                              .data['title']
+                                                              .toString(),
+                                                          check: true,
+                                                        ),
+                                                        type: PageTransitionType
+                                                            .fade));
                                               } else {
                                                 Navigator.push(
                                                     context,
@@ -232,6 +241,7 @@ class certificateview extends StatelessWidget {
                                                           title: snapshot1
                                                               .data['title']
                                                               .toString(),
+                                                          check: false,
                                                         ),
                                                         type: PageTransitionType
                                                             .fade));
@@ -244,6 +254,7 @@ class certificateview extends StatelessWidget {
                                                         title: snapshot1
                                                             .data['title']
                                                             .toString(),
+                                                        check: false,
                                                       ),
                                                       type: PageTransitionType
                                                           .fade));
@@ -276,7 +287,7 @@ class certificateview extends StatelessWidget {
                                           child: Text(
                                             snapshot1.data['tvideo'] ==
                                                     cfdata.length
-                                                ? 'Collect Certificate'
+                                                ? 'Certificate'
                                                 : 'Continue Course',
                                             style: GoogleFonts.roboto(
                                                 fontWeight: FontWeight.bold,
@@ -299,7 +310,7 @@ class certificateview extends StatelessWidget {
                           } else if (snapshot1.hasError) {
                             return const Icon(Icons.error_outline);
                           } else {
-                            return const CircularProgressIndicator();
+                            return const Center(child: CircularProgressIndicator());
                           }
                         });
                   }),
@@ -316,13 +327,13 @@ class certificateview extends StatelessWidget {
     await provider.database.child("course").get().then((value) {
       if (value.exists) {
         f = value.value as List;
-        f.forEach((element) {
+        for (var element in f) {
           if (element != null) {
             if (element['title'] == search['title']) {
               fdata = element;
             }
           }
-        });
+        }
         return fdata;
       } else {
         return fdata;
