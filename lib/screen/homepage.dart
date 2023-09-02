@@ -40,13 +40,13 @@ class _MyHomePageState extends State<Homepage> {
     ),
     TabItem(
       Icons.scatter_plot_outlined,
-      "Chat",
+      "Community",
       col.wh,
       labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
     ),
     TabItem(
       Icons.person,
-      "setting",
+      "Settings",
       col.wh,
       labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
     ),
