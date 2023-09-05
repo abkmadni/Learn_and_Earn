@@ -1,4 +1,6 @@
 # Miscellaneous
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.class
 *.log
 *.pyc

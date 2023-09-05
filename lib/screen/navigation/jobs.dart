@@ -289,7 +289,7 @@ class jobcontainer extends StatelessWidget {
 
             Column(
               children: [
-                const Icon(Icons.currency_rupee),
+                const Icon(Icons.paid),
                 Text(data['salary'].toString(),style: GoogleFonts.poppins(fontSize: AppLayout.getwidth(context)*0.03))
               ],
             ),

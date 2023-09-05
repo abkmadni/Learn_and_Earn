@@ -46,7 +46,7 @@ class _MyHomePageState extends State<Homepage> {
     ),
     TabItem(
       Icons.person,
-      "Settings",
+      "Profile",
       col.wh,
       labelStyle: GoogleFonts.roboto(fontWeight: FontWeight.bold,color:col.wh),
     ),

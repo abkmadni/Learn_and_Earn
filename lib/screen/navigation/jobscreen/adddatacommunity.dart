@@ -43,14 +43,14 @@ class adddatacommunity extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('About Something',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.04),),
+                    Text('Share your thoughts',style: GoogleFonts.roboto(fontWeight: FontWeight.bold,fontSize: AppLayout.getwidth(context)*0.04),),
                     TextFormField(
                       onChanged: (val){
                         provider.pass = val;
                       },
                       decoration: InputDecoration(
                           hintStyle: GoogleFonts.roboto(),
-                          hintText: "About Something"
+                          hintText: "Share your thoughts"
                       ),
                       style: GoogleFonts.roboto(),
                     )
@@ -71,7 +71,7 @@ class adddatacommunity extends StatelessWidget {
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('add image',style: GoogleFonts.poppins(),),
+                  child: Text('Add image',style: GoogleFonts.poppins(),),
                 ),
               ),
 
