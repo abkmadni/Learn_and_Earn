@@ -125,7 +125,7 @@ class certificateview extends StatelessWidget {
                                                               0.04),
                                                 ),
                                                 Text(
-                                                  snapshot1.data['tvideo']
+                                                  (snapshot1.data['tvideo']-1)
                                                       .toString(),
                                                   style: GoogleFonts.roboto(
                                                       fontSize:
@@ -149,7 +149,7 @@ class certificateview extends StatelessWidget {
                                                               0.04),
                                                 ),
                                                 Text(
-                                                  cfdata.length.toString(),
+                                                  (cfdata.length-1).toString(),
                                                   style: GoogleFonts.roboto(
                                                       fontSize:
                                                           AppLayout.getwidth(
@@ -172,13 +172,13 @@ class certificateview extends StatelessWidget {
                                                     dataSource: [
                                                       ChartData(
                                                           'Total',
-                                                          double.parse(snapshot1
-                                                              .data['tvideo']
+                                                          double.parse((snapshot1
+                                                              .data['tvideo']-1)
                                                               .toString())),
                                                       ChartData(
                                                           'Completed',
-                                                          double.parse(cfdata
-                                                              .length
+                                                          double.parse((cfdata
+                                                              .length-1)
                                                               .toString())),
                                                     ],
                                                     xValueMapper:
