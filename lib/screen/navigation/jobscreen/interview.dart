@@ -13,10 +13,19 @@ import 'package:intl/intl.dart';
 import '../../../tools/appstate.dart';
 import '../../../tools/col.dart';
 
-class interview extends StatelessWidget {
+class interview extends StatefulWidget {
   interview({super.key, required this.data, required this.keyval});
   Map data;
   String keyval;
+
+  @override
+  State<interview> createState() => _interviewState();
+}
+
+class _interviewState extends State<interview> {
+  Key datekey = UniqueKey();
+  TextEditingController _date = TextEditingController();
+  TextEditingController _time = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +42,21 @@ class interview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                abouduser(num: data['appliedby'].toString()),
+                abouduser(num: widget.data['appliedby'].toString()),
                 cer(
-                  num: data['appliedby'],
+                  num: widget.data['appliedby'],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text(data['title'],
+                Text(widget.data['title'],
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: AppLayout.getwidth(context) * 0.05)),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
-                    data['des'],
+                    widget.data['des'],
                     style: GoogleFonts.poppins(),
                   ),
                 ),
@@ -102,28 +111,31 @@ class interview extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: AppLayout.getwidth(context) * 0.04),
                       ),
-                      TextfieldDateAndTimePicker(
-                        materialDatePickerInitialDate: DateTime.now(),
-                        materialDatePickerFirstDate: DateTime.now(),
-                        materialDatePickerLastDate:
-                            DateTime(DateTime.now().year + 1),
-                        materialInitialTime: TimeOfDay.now(),
-                        cupertinoDatePickerMaximumDate:
-                            DateTime(DateTime.now().year + 1),
-                        cupertinoDatePickerMinimumDate: DateTime.now(),
-                        cupertinoDatePickerMaximumYear: DateTime.now().year + 1,
-                        cupertinoDatePickerMinimumYear: DateTime.now().year,
-                        cupertinoDateInitialDateTime: DateTime.now(),
-                        preferredDateFormat: DateFormat("dd-MM-yyyy"),
-                        cupertinoDatePickerBackgroundColor: Colors.white,
-                        textfieldDateAndTimePickerController:
-                            TextEditingController(),
-                        decoration: InputDecoration(
-                          hintText: "Date/Time",
-                          hintStyle: GoogleFonts.roboto(),
-                          suffixIcon: Icon(Icons.event),
-                        ),
-                      ),
+                      TextField(
+                          controller: _date,
+                          decoration: InputDecoration(
+                              icon: Icon(Icons.date_range),
+                              hintStyle: GoogleFonts.roboto()),
+                          onTap: () async {
+                            DateTime? pickeddate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.now(),
+                                lastDate: DateTime(DateTime.now().year + 1));
+                            var pickedtime = await showTimePicker(
+                                context: context, initialTime: TimeOfDay.now());
+                            if (pickeddate != null) {
+                              setState(() {
+                                _date.text =
+                                    DateFormat('dd-MM-yyyy').format(pickeddate);
+                              });
+                            }
+                            if (pickedtime != null) {
+                              setState(() {
+                                _date.text += " " + pickedtime.format(context);
+                              });
+                            }
+                          }),
                     ],
                   ),
                 ),
@@ -137,12 +149,12 @@ class interview extends StatelessWidget {
                       key.set({
                         'link': provider.confirm,
                         'time': provider.pass,
-                        'added': data['added'],
-                        'appliedby': data['appliedby'],
+                        'added': widget.data['added'],
+                        'appliedby': widget.data['appliedby'],
                       }).then((value) {
                         provider.database
                             .child('applyjob')
-                            .child(keyval)
+                            .child(widget.keyval)
                             .remove();
                         Navigator.pop(context);
                       });
