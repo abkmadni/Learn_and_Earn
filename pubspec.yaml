@@ -64,7 +64,6 @@ dependencies:
   esys_flutter_share_plus: ^2.2.0
   simple_animations: ^5.0.2
   syncfusion_flutter_charts: ^20.4.54
-  textfield_datepicker: ^0.2.0
 
 dev_dependencies:
   flutter_test:

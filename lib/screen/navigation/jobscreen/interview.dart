@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_flutter_app/tools/applayout.dart';
 import 'package:provider/provider.dart';
-import 'package:textfield_datepicker/textfield_dateAndTimePicker.dart';
 import 'package:intl/intl.dart';
 import '../../../tools/appstate.dart';
 import '../../../tools/col.dart';
@@ -121,7 +120,7 @@ class _interviewState extends State<interview> {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime.now(),
-                                lastDate: DateTime(DateTime.now().year + 1));
+                                lastDate: DateTime(DateTime.now().year + 2));
                             var pickedtime = await showTimePicker(
                                 context: context, initialTime: TimeOfDay.now());
                             if (pickeddate != null) {
@@ -135,6 +134,7 @@ class _interviewState extends State<interview> {
                                 _date.text += " " + pickedtime.format(context);
                               });
                             }
+                            provider.pass = _date.text;
                           }),
                     ],
                   ),
