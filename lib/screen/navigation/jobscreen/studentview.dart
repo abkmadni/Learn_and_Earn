@@ -15,12 +15,11 @@ import '../jobs.dart';
 import 'appliedjob.dart';
 
 class studenview extends StatelessWidget {
-  studenview({super.key,required this.check});
+  studenview({super.key, required this.check});
   bool check;
 
   @override
   Widget build(BuildContext context) {
-
     AppState provider = Provider.of<AppState>(context);
 
     return Scaffold(
@@ -28,41 +27,39 @@ class studenview extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-
-            top(title: check?'Application':'Hire'),
-
+            top(title: check ? 'Application' : 'Hire'),
             Expanded(
-                child:
-                check ?
-                FirebaseAnimatedList(
-                    query: provider.database.child('applyjob'),
-                    defaultChild: const Center(child: CircularProgressIndicator()),
-                    itemBuilder:(BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-                      Map data = snapshot.value as Map;
-                      if (data['appliedby'] == provider.prefs.getString('phone') ){
-                        return studentjobs(data: data);
-                      }else{
-                        return const SizedBox.shrink();
-                      }
-                    }
-                )
-              :
-                FirebaseAnimatedList(
-                    query: provider.database.child('interview'),
-                    defaultChild: const Center(child: CircularProgressIndicator()),
-                    itemBuilder:(BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-                      Map data = snapshot.value as Map;
-                      log(data.keys.toString());
-                      if(data['appliedby'] == provider.prefs.getString('phone') ) {
-                        return hire(data: data);
-                      }else{
-                        return const SizedBox.shrink();
-                      }
-                    }
-                ),
-
+              child: check
+                  ? FirebaseAnimatedList(
+                      query: provider.database.child('applyjob'),
+                      defaultChild:
+                          const Center(child: CircularProgressIndicator()),
+                      itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                          Animation<double> animation, int index) {
+                        Map data = snapshot.value as Map;
+                        if (data['appliedby'] ==
+                            provider.prefs.getString('phone')) {
+                          return studentjobs(data: data);
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      })
+                  : FirebaseAnimatedList(
+                      query: provider.database.child('interview'),
+                      defaultChild:
+                          const Center(child: CircularProgressIndicator()),
+                      itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                          Animation<double> animation, int index) {
+                        Map data = snapshot.value as Map;
+                        log(data.keys.toString());
+                        if (data['appliedby'] ==
+                            provider.prefs.getString('phone')) {
+                          return hire(data: data);
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
             ),
-
           ],
         ),
       ),
@@ -70,12 +67,8 @@ class studenview extends StatelessWidget {
   }
 }
 
-
-
-
-
 class studentjobs extends StatelessWidget {
-  studentjobs({super.key,required this.data});
+  studentjobs({super.key, required this.data});
   Map data;
 
   @override
@@ -91,37 +84,43 @@ class studentjobs extends StatelessWidget {
         ),
         child: Row(
           children: [
-
             const CircleAvatar(
-              child: Icon(CupertinoIcons.app,color: col.wh,),
+              child: Icon(
+                CupertinoIcons.app,
+                color: col.wh,
+              ),
             ),
-
-            const SizedBox(width: 15,),
-
+            const SizedBox(
+              width: 15,
+            ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data['title'].toString(),style: GoogleFonts.poppins(fontSize: AppLayout.getwidth(context)*0.04
-                      ,fontWeight: FontWeight.bold),),
-                  Text(data['comp'].toString(),style: GoogleFonts.poppins(fontSize: AppLayout.getwidth(context)*0.04),)
+                  Text(
+                    data['title'].toString(),
+                    style: GoogleFonts.poppins(
+                        fontSize: AppLayout.getwidth(context) * 0.04,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    data['comp'].toString(),
+                    style: GoogleFonts.poppins(
+                        fontSize: AppLayout.getwidth(context) * 0.04),
+                  )
                 ],
               ),
             ),
-
             Column(
               children: [
-                const Icon(Icons.currency_rupee),
-                Text(data['salary'].toString(),style: GoogleFonts.poppins(fontSize: AppLayout.getwidth(context)*0.03))
+                const Icon(Icons.paid),
+                Text(data['salary'].toString(),
+                    style: GoogleFonts.poppins(
+                        fontSize: AppLayout.getwidth(context) * 0.03))
               ],
             ),
           ],
-        )
-
-    );
+        ));
   }
 }
-
-
-
